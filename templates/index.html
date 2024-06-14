@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+    <style>
+        body {
+        font-family: Brasika;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 68px; /* Make the heading bigger */
+    }
+
+    .button-container {
+        margin-top: 50px; /* Adjusted margin for better spacing */
+        display: flex;
+        justify-content: center;
+    }
+
+    .button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px 40px; /* Increased padding to make buttons bigger */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px; /* Increased font size */
+        cursor: pointer;
+        border: none;
+        border-radius: 30px; /* Increased border radius for rounded corners */
+        margin-right: 20px; /* Adjusted margin between buttons */
+    }
+
+    .button:hover {
+        background-color: #45a049;
+    }
+
+    .search-container {
+        margin-top: 100px; /* Adjust margin as needed */
+        margin-bottom: 100px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-container form {
+        width: 100%;
+        max-width: 900px; /* Set a maximum width if needed */
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .search-container input[type=text] {
+        width: 100%; /* Adjust width of the input field as needed */
+        padding: 15px 20px; /* Adjust padding as needed */
+        border: 1px solid #ccc;
+        border-radius: 30px; /* Adjust border-radius to make it round */
+        outline: none; /* Remove default focus outline */
+        font-size: 32px; /* Adjust font size as needed */
+        margin-right: 20px;
+    }
+
+    .search-container input[type=text]:focus {
+        border-color: #4CAF50; /* Change border color on focus */
+    }
+
+    .search-container input[type=text]::placeholder {
+        color: #aaa; /* Adjust placeholder color */
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Search Engine</h1>
+    <div class="search-container">
+    <form action="/search" method="post">
+        <input type="text" name="query" placeholder="Search document">
+        <button class="button" type="submit">Search</button>
+    </form>
+    </div>
+</div>
+</body>
+</html>

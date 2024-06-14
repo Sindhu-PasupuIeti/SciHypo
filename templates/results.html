@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+            body {
+        font-family: Brasika;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 68px; /* Make the heading bigger */
+    }
+
+    .file-list {
+        margin-top: 20px; /* Adjust margin as needed */
+        justify-content: center;
+        width: 100%;
+    }
+
+    .file-list ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .file-list li {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 20px;
+        border-radius: 5px;
+        font-size: 28px;
+        display: flex; /* Make list items flex containers */
+        justify-content: space-between; /* Distribute space between items */
+    }
+
+    .file-list li:hover {
+        background-color: #f0f0f0;
+    }
+    .file-list span{
+        flex: 1; /* Allow the file name to grow and shrink as needed */
+    }
+    .dropbtn {
+        background-color: #4CAF50; /* Set background color to green */
+        color: white;
+        font-size: 24px; /* Increase font size for bigger plus */
+        border: none;
+        cursor: pointer;
+        width: 40px; /* Set width and height for a square button */
+        height: 40px;
+        border-radius: 30%; /* Make the button round */
+        display: flex; /* Center icon vertically and horizontally */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dropbtn:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+    .file-action-btn {
+        background-color: #4CAF50; /* Green background color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px 0; /* Add margin between buttons */
+        width: 100%; /* Make buttons full width */
+        font-size: 22px;
+    }
+
+    .file-action-btn:hover {
+        background-color: #45a049; /* Darker green color on hover */
+    }
+    .dropdown {
+        position: relative; /* Set relative positioning for dropdown container */
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        min-width: 140px; /* Set a minimum width for the dropdown */
+        right: 0; /* Align dropdown to the right of its container */
+    }
+
+    .dropdown-content button {
+        width: auto; /* Reset width to auto for buttons inside dropdown */
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    </style>
+    <script>
+    function dropdownAction(filename, action) {
+        if (action === 'open') {
+            window.open('/file/' + encodeURIComponent(filename), '_blank');
+        } else if (action === 'summary') {
+            window.open('/summary/' + encodeURIComponent(filename), '_blank');
+        } else if (action === 'hypothesis') {
+            window.open('/hypothesis/' + encodeURIComponent(filename), '_blank');
+        }
+    }
+</script>
+
+</head>
+<body>
+<div class="container">
+    <h1>Search Results</h1>
+    <div class="file-list">
+    <ul>
+        {% for filename, relevance_score in results %}
+        <li>
+            <span>{{ filename }} - Relevance: {{ relevance_score }}</span>
+            <div class="dropdown">
+                <button class="dropbtn">+</button>
+                <div class="dropdown-content">
+                    <button class="file-action-btn" onclick="dropdownAction('{{ filename }}', 'open')">Open the file</button>
+                    <button class="file-action-btn" onclick="dropdownAction('{{ filename }}', 'summary')">Summary of the file</button>
+                    <button class="file-action-btn" onclick="dropdownAction('{{ filename }}', 'hypothesis')">Hypothesis of the file</button>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+</div>
+</body>
+</html>
